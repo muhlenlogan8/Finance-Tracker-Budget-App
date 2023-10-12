@@ -5,11 +5,11 @@ ui <- shinyUI({
   fluidPage(
     tabsetPanel(
       tabPanel("Input File Tab",
-               InputFileButton()
+               InputFileModule()
       ),
       
       tabPanel("Data Table Tab",
-               PrintTableFunc()
+               PrintTable()
       )
     )
   )

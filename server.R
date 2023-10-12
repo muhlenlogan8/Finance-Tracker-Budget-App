@@ -8,5 +8,5 @@ server <- function(input, output, session) {
   output$mychoice <- renderText(
     input$select
   )
-  TableOfInputtedFile(input, output, session)
+  CreateTable(input, output, session)
 }
