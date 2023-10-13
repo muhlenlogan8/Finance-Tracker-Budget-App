@@ -18,4 +18,12 @@ formattable(., list (
     !is.na(x),
     style(color = "red"), NA)))
 )
-))
+
+currentbal <- table %>% mutate_at("Balance", as.double) %>% 
+  select(., "Balance") %>% last()
+incometodate <- table %>% mutate_at("Income", as.double) %>% 
+  filter(., Category == "Income") %>% select(., "Income") %>% sum()
+debitstodate <- table %>% mutate_at("Debits", as.double) %>% 
+  filter(., Category != "Income") %>% select(., "Debits") %>% sum()
+testtbl <- table %>% mutate_at("Debits", as.double) %>% 
+  filter(., Category != "Income") %>% select(., "Debits")
