@@ -3,8 +3,9 @@ library(tidyr)
 library(dplyr)
 library(formattable)
 
-table <- read_excel("Financial Sheet.xlsx", 1) %>% drop_na(Month) %>% 
-  mutate_at(c("Month"), as.integer)
+table <- read_excel("Financial Sheet.xlsx", 1) %>% drop_na(Month) %>%
+  mutate_at("Month", as.integer) %>% mutate_at("Date", as.character) %>%
+  mutate_all(~replace(., is.na(.), values = ""))
 table
 
 
@@ -27,3 +28,24 @@ debitstodate <- table %>% mutate_at("Debits", as.double) %>%
   filter(., Category != "Income") %>% select(., "Debits") %>% sum()
 testtbl <- table %>% mutate_at("Debits", as.double) %>% 
   filter(., Category != "Income") %>% select(., "Debits")
+
+
+table %>%
+  mutate_at("Month", as.integer) %>% mutate_at("Date", as.character) %>%
+  mutate_all(~replace(., is.na(.), values = "")) %>% mutate_at("Income", as.double) %>% 
+  filter(., Category == "Income") %>% select(., "Income") %>% sum()
+
+table %>%
+  mutate_at("Month", as.integer) %>% mutate_at("Date", as.character) %>%
+  mutate_all(~replace(., is.na(.), values = "")) %>% mutate_at("Debits", as.double) %>% 
+  filter(., Category != "Income") %>% select(., "Debits") %>% sum()
+
+library(ggplot2)
+library(hrbrthemes)
+
+plottable <- table %>% select("Date") %>% mutate_all(as.Date(format("%Y-%m-%d")))
+ggplot(plottable, aes(1, 32)) +
+  geom_line( color="#69b3a2", linewidth = 2, alpha = 1, linetype = 1) +
+  ggtitle("Evolution of something")
+  
+  

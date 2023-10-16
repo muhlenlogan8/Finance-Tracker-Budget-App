@@ -52,25 +52,3 @@ ModifyTable <- function(tbl, input, output, session) {
     )
   })
 }
-
-
-# CreateTable <- function(input, output, session) {
-#   output$contents <- renderFormattable({
-#     inFile <- input$file1
-#     if (is.null(inFile))
-#       return(NULL)
-#     file.rename(inFile$datapath,
-#                 paste(inFile$datapath, ".xlsx", sep=""))
-#     output$tbl <- read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1) %>% drop_na(Month) %>%
-#       mutate_at("Month", as.integer) %>% mutate_at("Date", as.character) %>%
-#       mutate_all(~replace(., is.na(.), values = "")) %>%
-#       formattable(., list (
-#         Income = formatter(.tag = "span", style = x ~ ifelse(
-#           !is.na(x),
-#           style(color = "green"), NA)),
-#         Debits = formatter(.tag = "span", style = x ~ ifelse(
-#           !is.na(x),
-#           style(color = "red"), NA)))
-#       )
-#   })
-# }

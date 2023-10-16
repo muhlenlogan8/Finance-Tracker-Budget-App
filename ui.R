@@ -1,20 +1,5 @@
 source("InputExcelFile.R")
 
-
-# ui <- shinyUI({
-#   fluidPage(
-#     theme = shinytheme("spacelab"),
-#     tabsetPanel(
-#       tabPanel("Input File Tab",
-#                InputFileModule()
-#       ),
-#       
-#       tabPanel("Data Table Tab",
-#                PrintTable()
-#       )
-#     )
-#   )
-# })
 ui <- shinyUI({
   dashboardPage(
     dashboardHeader(title = "Financial Visualizer App"),

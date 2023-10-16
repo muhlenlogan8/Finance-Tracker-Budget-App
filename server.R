@@ -17,7 +17,8 @@ server <- function(input, output, session) {
         ModifyTable(tbl, input, output, session)
         
         output$currentbalance <- renderValueBox({
-          currentbal <- tbl %>% select(., "Balance") %>% last()
+          currentbal <- tbl %>% select(., "Balance") %>% last() %>% 
+            as.character(.) %>% paste0("$", .)
           valueBox(
             value = currentbal,
             subtitle = "Current Balance",
@@ -25,12 +26,13 @@ server <- function(input, output, session) {
             color = "blue"
           )
         })
-        incProgress(1/n, detail = "Calculating 1/3")
+        incProgress(1/n, detail = "Calculating Current Balance")
         Sys.sleep(0.5)
         
         output$incometodate <- renderValueBox({
           incometodate <- tbl %>% mutate_at("Income", as.double) %>% 
-            filter(., Category == "Income") %>% select(., "Income") %>% sum()
+            filter(., Category == "Income") %>% select(., "Income") %>%
+            drop_na() %>% sum() %>% as.character(.) %>% paste0("$", .)
           valueBox(
             value = incometodate,
             subtitle = "Income To Date",
@@ -38,12 +40,13 @@ server <- function(input, output, session) {
             color = "green"
           )
         })
-        incProgress(1/n, detail = "Calculating 2/3")
+        incProgress(1/n, detail = "Calculating Total Income")
         Sys.sleep(0.5)
         
         output$debitstodate <- renderValueBox({
           debitstodate <- tbl %>% mutate_at("Debits", as.double) %>% 
-            filter(., Category != "Income") %>% select(., "Debits") %>% sum()
+            filter(., Category != "Income") %>% select(., "Debits") %>%
+            drop_na() %>% sum() %>% as.character(.) %>% paste0("$", .)
           valueBox(
             value = debitstodate,
             subtitle = "Debits To Date",
@@ -51,7 +54,7 @@ server <- function(input, output, session) {
             color = "red"
           )
         })
-        incProgress(1/n, detail = "Calculating 3/3")
+        incProgress(1/n, detail = "Calculating Total Debits")
         Sys.sleep(0.5)
       })
     })
