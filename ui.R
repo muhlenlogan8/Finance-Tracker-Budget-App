@@ -1,4 +1,5 @@
 source("InputExcelFile.R")
+source("TemplateFileFeatures.R")
 
 ui <- shinyUI({
   dashboardPage(
@@ -6,6 +7,7 @@ ui <- shinyUI({
     dashboardSidebar(
       sidebarMenu(
         menuItem("Input Data Here", tabName = "inputdata"),
+        menuItem("Get Template File Here", tabName = "gettemplate"),
         menuItem("Dashboard", tabName = "dashboard"),
         menuItem("Raw Data Table", tabName = "rawdatatable")
       )
@@ -14,6 +16,9 @@ ui <- shinyUI({
       tabItems(
         tabItem("inputdata",
                 InputFileModule()
+        ),
+        tabItem("gettemplate",
+                DownloadTemplateButton()
         ),
         tabItem("dashboard",
                 fluidRow(

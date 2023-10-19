@@ -1,5 +1,6 @@
 source("global.R")
 source("InputExcelFile.R")
+source("TemplateFileFeatures.R")
 
 
 options(shiny.maxRequestSize = 30*1024^2)
@@ -58,4 +59,5 @@ server <- function(input, output, session) {
         Sys.sleep(0.5)
       })
     })
+  GetFilePath2(input, output, session)
 }

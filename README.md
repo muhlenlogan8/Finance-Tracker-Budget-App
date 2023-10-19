@@ -1,1 +1,4 @@
-# Finance-Visualization-App
+# Finance Tracker/Budget App
+Logan Muhlen
+
+WIP
