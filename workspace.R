@@ -59,3 +59,8 @@ data <- read_excel("Financial Sheet - Template.xlsx", 1) %>% slice(1:100)
 library(writexl)
 
 write_xlsx(data, "Financial Sheet - Templatetest.xlsx")
+
+
+# Notes: May want to split up InputExcelFile.R into two files, one for table methods, one for input file and datapath methods (limit clutter)
+# may also want to limit comments since they clutter and break up code to the point where it is difficult to follow fluently
+# in the learning process I feel comments are good but once i get the hang of it I should limit them to only the most important parts

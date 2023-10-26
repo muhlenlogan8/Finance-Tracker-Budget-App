@@ -1,10 +1,12 @@
-source("InputExcelFile.R")
+source("InputExcelFile.R") 
 source("TemplateFileFeatures.R")
 
 ui <- shinyUI({
   dashboardPage(
+    # dashboard header
     dashboardHeader(title = "Financial Visualizer App"),
     dashboardSidebar(
+      # menu items
       sidebarMenu(
         menuItem("Input Data Here", tabName = "inputdata"),
         menuItem("Get Template File Here", tabName = "gettemplate"),
@@ -14,24 +16,25 @@ ui <- shinyUI({
     ),
     dashboardBody(
       tabItems(
+        # input data tab
         tabItem("inputdata",
-                InputFileModule()
+                InputFileModule() # input file button module
         ),
+        # get template tab
         tabItem("gettemplate",
-                DownloadTemplateButton()
+                DownloadTemplateButton() # download template button module
         ),
+        # dashboard tab
         tabItem("dashboard",
                 fluidRow(
-                  valueBoxOutput("currentbalance"),
-                  valueBoxOutput("incometodate"),
-                  valueBoxOutput("debitstodate")
+                  valueBoxOutput("currentbalance"), # current balance value box
+                  valueBoxOutput("incometodate"),   # income to date value box
+                  valueBoxOutput("debitstodate")    # debits to date value box
                 )
         ),
+        # raw data table tab
         tabItem("rawdatatable",
-                PrintTable()
-                # numericInput("maxrows", "Rows to show", 25),
-                # verbatimTextOutput("rawtable"),
-                # downloadButton("downloadcsv", "Download as CSV")
+                PrintTable() # print raw data table module
         )
       )
     )
