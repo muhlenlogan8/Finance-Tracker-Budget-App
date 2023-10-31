@@ -1,6 +1,6 @@
 source("global.R")
 
-# Code I found online, doesn't work as intended, difficult to store the template file
+# Code I found online, doesn't work as intended. It is difficult to store the template file and I
 # may need to just store it elsewhere and send the user there to download it to maintain format
 # and such
 DownloadTemplateButton <- function() {

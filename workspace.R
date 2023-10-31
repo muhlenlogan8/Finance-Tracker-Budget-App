@@ -1,7 +1,13 @@
+# This is a workspace for me to test prior to implementation into the actual app.
+# It is easier to test here since I don't have to go through the process of running the
+# app each time to see what works and what doesn't.
+
 library(readxl)
 library(tidyr)
 library(dplyr)
 library(formattable)
+library(ggplot2)
+library(hrbrthemes)
 
 table <- read_excel("Financial Sheet.xlsx", 1) %>% drop_na(Month) %>%
   mutate_at("Month", as.integer) %>% mutate_at("Date", as.character) %>%
@@ -60,7 +66,8 @@ library(writexl)
 
 write_xlsx(data, "Financial Sheet - Templatetest.xlsx")
 
-
-# Notes: May want to split up InputExcelFile.R into two files, one for table methods, one for input file and datapath methods (limit clutter)
-# may also want to limit comments since they clutter and break up code to the point where it is difficult to follow fluently
-# in the learning process I feel comments are good but once i get the hang of it I should limit them to only the most important parts
+ggplot(table, aes(x = Date, y = Balance)) +
+  geom_step(direction = "hv") +
+  geom_point() +
+  theme_ipsum() +
+  labs(title = "Balance Over Time", x = "Day", y = "Balance")

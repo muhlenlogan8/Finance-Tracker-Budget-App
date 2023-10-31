@@ -1,0 +1,7 @@
+Notes: 
+
+- May want to split up InputExcelFile.R into two files, one for table methods, one for input file and datapath methods (limit clutter)
+
+- May also want to limit comments since they clutter and break up code to the point where it is difficult to follow fluently
+
+- In the learning process I feel comments are good but once I get the hang of it, I should limit them to only the most important parts
